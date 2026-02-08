@@ -1,7 +1,7 @@
 {
-	"id": "obsidian-auto-link-converter",
-	"name": "Auto Link Converter",
-	"version": "1.0.0",
+	"id": "paste-link-with-title",
+	"name": "Paste link with title",
+	"version": "1.0.1",
 	"minAppVersion": "0.15.0",
 	"description": "Automatically converts pasted URLs to reference-style markdown links with page titles.",
 	"author": "Yuki Nagashima",

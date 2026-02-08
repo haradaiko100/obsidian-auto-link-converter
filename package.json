@@ -1,6 +1,6 @@
 {
-	"name": "obsidian-auto-link-converter",
-	"version": "1.0.0",
+	"name": "obsidian-paste-link-with-title",
+	"version": "1.0.1",
 	"description": "Convert pasted URLs into markdown links with fetched page titles",
 	"main": "main.js",
 	"type": "module",
