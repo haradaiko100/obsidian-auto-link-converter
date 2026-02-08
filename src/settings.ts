@@ -1,18 +1,20 @@
 import {App, PluginSettingTab, Setting} from "obsidian";
-import MyPlugin from "./main";
+import AutoLinkConverterPlugin from "./main";
 
-export interface MyPluginSettings {
-	mySetting: string;
+export interface AutoLinkConverterSettings {
+	enableAutoConvert: boolean;
+	placeholderText: string;
 }
 
-export const DEFAULT_SETTINGS: MyPluginSettings = {
-	mySetting: 'default'
+export const DEFAULT_SETTINGS: AutoLinkConverterSettings = {
+	enableAutoConvert: true,
+	placeholderText: 'Untitled',
 }
 
-export class SampleSettingTab extends PluginSettingTab {
-	plugin: MyPlugin;
+export class AutoLinkConverterSettingTab extends PluginSettingTab {
+	plugin: AutoLinkConverterPlugin;
 
-	constructor(app: App, plugin: MyPlugin) {
+	constructor(app: App, plugin: AutoLinkConverterPlugin) {
 		super(app, plugin);
 		this.plugin = plugin;
 	}
@@ -22,14 +24,26 @@ export class SampleSettingTab extends PluginSettingTab {
 
 		containerEl.empty();
 
+		new Setting(containerEl).setHeading().setName('Auto link converter settings');
+
 		new Setting(containerEl)
-			.setName('Settings #1')
-			.setDesc('It\'s a secret')
-			.addText(text => text
-				.setPlaceholder('Enter your secret')
-				.setValue(this.plugin.settings.mySetting)
+			.setName('Enable auto-conversion')
+			.setDesc('Automatically convert pasted urls to reference-style links')
+			.addToggle(toggle => toggle
+				.setValue(this.plugin.settings.enableAutoConvert)
 				.onChange(async (value) => {
-					this.plugin.settings.mySetting = value;
+					this.plugin.settings.enableAutoConvert = value;
+					await this.plugin.saveSettings();
+				}));
+
+		new Setting(containerEl)
+			.setName('Placeholder text')
+			.setDesc('Text to use when page title cannot be fetched (default: "untitled")')
+			.addText(text => text
+				.setPlaceholder('Untitled')
+				.setValue(this.plugin.settings.placeholderText)
+				.onChange(async (value) => {
+					this.plugin.settings.placeholderText = value || 'Untitled';
 					await this.plugin.saveSettings();
 				}));
 	}
