@@ -6,5 +6,6 @@
 	"description": "Automatically converts pasted URLs to reference-style markdown links with page titles.",
 	"author": "Yuki Nagashima",
 	"authorUrl": "https://github.com/haradaiko100/",
-	"isDesktopOnly": false
+	"isDesktopOnly": false,
+	"fundingUrl": "https://buymeacoffee.com/ajod"
 }
